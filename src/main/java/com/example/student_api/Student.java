@@ -1,6 +1,12 @@
 package com.example.student_api;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Student {
+	
+	@Id
     private int id;
     private String name;
     private int age;
@@ -12,7 +18,8 @@ public class Student {
         this.age = age;
         this.course = course;
     }
-
+    
+    // getters and setters
     public int getId() { return id; }
     public String getName() { return name; }
     public int getAge() { return age; }
