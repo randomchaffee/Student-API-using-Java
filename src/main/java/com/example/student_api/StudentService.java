@@ -1,35 +1,30 @@
 package com.example.student_api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class StudentService {
-    private List<Student> students = new ArrayList<>();
+	// replace students ArrayList with repository
+	@Autowired
+	StudentRepository repo;
 
     public List<Student> getAll() {
-        return students;
+        return repo.findAll();
     }
-    
-    
-    
-    
-    
-    
+
     // Methods
     
     // find a student in the list using its id
     public Student getStudentById(int id) {
-    	return students.stream()
-    			.filter(s -> s.getId() == id)
-    			.findFirst()
-    			.orElse(null);
+    	return repo.findById(id).orElse(null);
     }
     
     // add a student to data list
-    public void addStudent(Student s) {
-        students.add(s);
+    public String addStudent(Student s) {
+        repo.save(s);
+        return "Student added successfully.";
     }
     
     // update student values
@@ -42,18 +37,18 @@ public class StudentService {
     	existing.setName(updatedStudent.getName());
     	existing.setAge(updatedStudent.getAge());
     	existing.setCourse(updatedStudent.getCourse());
+    	repo.save(existing);
     	
     	return "Student updated Succesfully.";
     }
     
     // delete a student
     public String deleteStudent(int id) {
-    	Student existing = getStudentById(id);
-    	if (existing == null) {
+    	if (!repo.existsById(id)) {
     		return "Student not found.";
     	}
     	
-    	students.remove(existing);
+    	repo.deleteById(id);
     	return "Student deleted successfully.";
     }
     
