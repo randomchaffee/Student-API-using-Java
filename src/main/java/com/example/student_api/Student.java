@@ -1,19 +1,28 @@
 package com.example.student_api;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Student {
-    private int id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	
     private String name;
-    private int age;
+    private Integer age;
     private String course;
 
     public Student(int id, String name, int age, String course) {
-        this.id = id;
         this.name = name;
         this.age = age;
         this.course = course;
     }
-
-    public int getId() { return id; }
+    
+    // getters and setters
     public String getName() { return name; }
     public int getAge() { return age; }
     public  String getCourse() { return course; }
