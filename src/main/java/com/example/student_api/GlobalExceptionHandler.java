@@ -5,12 +5,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-		String errorMsg = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
-		return ResponseEntity.badRequest().body(errorMsg);
+	public ResponseEntity<List<String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+		List<String> errors = ex.getBindingResult()
+								.getAllErrors()
+								.stream()
+								.map(error -> error.getDefaultMessage())
+								.collect(Collectors.toList());
+		return ResponseEntity.badRequest().body(errors);
 	}
 }
