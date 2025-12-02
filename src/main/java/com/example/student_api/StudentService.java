@@ -22,9 +22,8 @@ public class StudentService {
     }
     
     // add a student to data list
-    public String addStudent(Student s) {
-        repo.save(s);
-        return "Student added successfully.";
+    public Student addStudent(Student s) {
+        return repo.save(s);
     }
     
     // update student values

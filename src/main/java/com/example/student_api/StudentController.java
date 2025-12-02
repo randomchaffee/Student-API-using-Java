@@ -27,9 +27,8 @@ public class StudentController {
     
     // add a student
     @PostMapping
-    public String addStudent(@RequestBody Student s) {
-        service.addStudent(s);
-        return "Student added!";
+    public Student addStudent(@RequestBody Student s) {
+        return service.addStudent(s);
     }
     
     // update a student
