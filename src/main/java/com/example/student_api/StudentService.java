@@ -39,13 +39,12 @@ public class StudentService {
     }
     
     // delete a student
-    public String deleteStudent(Long id) {
+    public void deleteStudent(Long id) {
     	if (!repo.existsById(id)) {
-    		return "Student not found.";
+    		throw new RuntimeException("Student not found");
     	}
     	
     	repo.deleteById(id);
-    	return "Student deleted successfully.";
     }
     
 }
