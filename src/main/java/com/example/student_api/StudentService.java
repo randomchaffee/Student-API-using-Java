@@ -27,18 +27,15 @@ public class StudentService {
     }
     
     // update student values
-    public String updateStudent(Long id, Student updatedStudent) {
-    	Student existing = getStudentById(id);
-    	if (existing == null) {
-    		return "Student not found.";
-    	}
-    	
+    public Student updateStudent(Long id, Student updatedStudent) {
+    	Student existing = repo.findById(id)
+    			.orElseThrow(() -> new RuntimeException("Student not found"));
+
     	existing.setName(updatedStudent.getName());
     	existing.setAge(updatedStudent.getAge());
     	existing.setCourse(updatedStudent.getCourse());
-    	repo.save(existing);
     	
-    	return "Student updated Succesfully.";
+    	return repo.save(existing);
     }
     
     // delete a student
