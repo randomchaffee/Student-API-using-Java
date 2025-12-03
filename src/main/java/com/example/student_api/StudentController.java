@@ -1,5 +1,6 @@
 package com.example.student_api;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -34,7 +35,7 @@ public class StudentController {
     
     // update a student
     @PutMapping("/{id}")
-    public String updateStudent(@PathVariable Long id, @RequestBody Student student) {
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
     	return service.updateStudent(id, student);
     }
     
