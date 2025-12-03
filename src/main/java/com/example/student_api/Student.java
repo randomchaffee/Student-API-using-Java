@@ -36,9 +36,11 @@ public class Student {
     public String getName() { return name; }
     public Integer getAge() { return age; }
     public  String getCourse() { return course; }
+    public Long getId() { return id; }
     
     public void setName(String name) { this.name = name; }
     public void setAge(Integer age) { this.age = age; }
     public void setCourse(String course) { this.course = course; }
+    public void setId(Long id) { this.id = id; }
     
 }
