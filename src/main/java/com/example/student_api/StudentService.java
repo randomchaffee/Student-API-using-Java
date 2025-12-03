@@ -17,7 +17,7 @@ public class StudentService {
     // Methods
     
     // find a student in the list using its id
-    public Student getStudentById(int id) {
+    public Student getStudentById(Long id) {
     	return repo.findById(id).orElse(null);
     }
     
@@ -27,7 +27,7 @@ public class StudentService {
     }
     
     // update student values
-    public String updateStudent(int id, Student updatedStudent) {
+    public String updateStudent(Long id, Student updatedStudent) {
     	Student existing = getStudentById(id);
     	if (existing == null) {
     		return "Student not found.";
@@ -42,7 +42,7 @@ public class StudentService {
     }
     
     // delete a student
-    public String deleteStudent(int id) {
+    public String deleteStudent(Long id) {
     	if (!repo.existsById(id)) {
     		return "Student not found.";
     	}
