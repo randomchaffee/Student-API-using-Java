@@ -20,7 +20,15 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ApiError> handleValidationExceptions(MethodArgumentNotValidException ex) {
 		String errorMsg = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
 		ApiError error = new ApiError(400, errorMsg);
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 		
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+	
+	// Manual "student not found" errors
+	@ExceptionHandler(StudentNotFoundException.class)
+	public ResponseEntity<ApiError> handleNotFound(StudentNotFoundException ex) {
+		ApiError error = new ApiError(404, ex.getMessage());
+		
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 }
