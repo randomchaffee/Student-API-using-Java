@@ -3,6 +3,7 @@ package com.randomchaffee.student_api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.randomchaffee.student_api.exception.StudentNotFoundException;
 import com.randomchaffee.student_api.model.Student;
 import com.randomchaffee.student_api.repository.StudentRepository;
 
@@ -22,7 +23,8 @@ public class StudentService {
     
     // find a student in the list using its id
     public Student getStudentById(Long id) {
-    	return repo.findById(id).orElse(null);
+    	return repo.findById(id)
+    			.orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " not found"));
     }
     
     // add a student to data list
