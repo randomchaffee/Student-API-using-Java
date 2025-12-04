@@ -1,4 +1,4 @@
-package com.example.student_api;
+package com.randomchaffee.student_api;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
