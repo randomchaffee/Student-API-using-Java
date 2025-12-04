@@ -1,4 +1,4 @@
-package com.randomchaffee.student_api;
+package com.randomchaffee.student_api.exception;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.http.ResponseEntity;

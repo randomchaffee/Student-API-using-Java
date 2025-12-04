@@ -1,7 +1,11 @@
-package com.randomchaffee.student_api;
+package com.randomchaffee.student_api.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.randomchaffee.student_api.model.Student;
+import com.randomchaffee.student_api.service.StudentService;
+
 import jakarta.validation.Valid;
 import java.util.List;
 

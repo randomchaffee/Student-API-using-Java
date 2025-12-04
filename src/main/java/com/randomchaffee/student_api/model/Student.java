@@ -1,4 +1,4 @@
-package com.randomchaffee.student_api;
+package com.randomchaffee.student_api.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

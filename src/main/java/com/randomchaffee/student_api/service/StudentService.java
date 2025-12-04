@@ -1,7 +1,11 @@
-package com.randomchaffee.student_api;
+package com.randomchaffee.student_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.randomchaffee.student_api.model.Student;
+import com.randomchaffee.student_api.repository.StudentRepository;
+
 import java.util.List;
 
 @Service
