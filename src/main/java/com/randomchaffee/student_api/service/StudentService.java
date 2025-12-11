@@ -24,7 +24,7 @@ public class StudentService {
     // find a student in the list using its id
     public Student getStudentById(Long id) {
     	return repo.findById(id)
-    			.orElseThrow(() -> new StudentNotFoundException("Student with id " + id + " not found"));
+    			.orElseThrow(() -> new StudentNotFoundException(id));
     }
     
     // add a student to data list
@@ -34,7 +34,8 @@ public class StudentService {
     
     // update student values
     public String updateStudent(Long id, Student updatedStudent) {
-    	Student existing = getStudentById(id); // now throws if not found
+    	Student existing = repo.findById(id)
+    			.orElseThrow(() -> new StudentNotFoundException(id));
 
     	existing.setName(updatedStudent.getName());
     	existing.setAge(updatedStudent.getAge());
@@ -46,11 +47,10 @@ public class StudentService {
     
     // delete a student
     public String deleteStudent(Long id) {
-    	if (!repo.existsById(id)) {
-    		throw new StudentNotFoundException("Student with id " + id + " not found");
-    	}
+    	Student existing = repo.findById(id)
+    			.orElseThrow(() -> new StudentNotFoundException(id));
     	
-    	repo.deleteById(id);
+    	repo.delete(existing);
     	return "Student deleted successfully.";
     }
     
