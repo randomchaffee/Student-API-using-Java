@@ -24,14 +24,6 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 	
-	// Manual "student not found" errors
-	@ExceptionHandler(StudentNotFoundException.class)
-	public ResponseEntity<ApiError> handleNotFound(StudentNotFoundException ex) {
-		ApiError error = new ApiError(404, ex.getMessage());
-		
-		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-	}
-	
 	@ExceptionHandler(StudentNotFoundException.class)
 	public ResponseEntity<String> handleStudentNotFound(StudentNotFoundException ex) {
 		return ResponseEntity.status(404).body(ex.getMessage());
