@@ -18,10 +18,15 @@ public class GlobalExceptionHandler {
 	// Validation errors
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ApiError> handleValidationExceptions(MethodArgumentNotValidException ex) {
-		String errorMsg = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
-		ApiError error = new ApiError(400, errorMsg);
+		List<String> messages = ex.getBindingResult()
+				.getFieldErrors()
+				.stream()
+				.map(error -> error.getDefaultMessage())
+				.collect(Collectors.toList());
 		
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+		ApiError error = new ApiError(400, messages);
+		
+		return ResponseEntity.badRequest().body(error);
 	}
 	
 	@ExceptionHandler(StudentNotFoundException.class)
