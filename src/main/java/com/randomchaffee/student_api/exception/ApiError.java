@@ -3,21 +3,22 @@
 package com.randomchaffee.student_api.exception;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ApiError {
 	// class fields
 	private int status;
-	private String message;
+	private List<String> messages;
 	private LocalDateTime timestamp = LocalDateTime.now();
 	
 	// constructor
-	public ApiError(int status, String message) {
+	public ApiError(int status, List<String> messages) {
 		this.status = status;
-		this.message = message;
+		this.messages = messages;
 	}
 	
 	// getters
 	public int getStatus() { return status; }
-	public String getMessage() { return message; }
+	public List<String> getMessage() { return messages; }
 	public LocalDateTime getTimestamp() { return timestamp; }
 }
